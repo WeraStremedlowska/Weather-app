@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class WeatherViewController: UIViewController {
 
@@ -17,8 +18,42 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showAnimation()
+        fetchWeather()
         
-        weatherManager.featherWeather(city: "Paris")
+//        weatherManager.fetchWeather(byCity: "Paris")
+    }
+    
+    private func fetchWeather() {
+        
+        weatherManager.fetchWeather(byCity: "Berlin") {[weak self](result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let weatherData):
+                this.updateView(with: weatherData)
+            case .failure(let error):
+                print("error here: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func updateView(with data: WeatherData) {
+        hideAnimation()
+        temperatureLabel.text = data.main.temp.toString().appending("°C")
+        conditionLabel.text = data.weather.first?.description
+        navigationItem.title = data.name
+    }
+    
+    private func hideAnimation() {
+        conditionImageView.hideSkeleton()
+        temperatureLabel.hideSkeleton()
+        conditionLabel.hideSkeleton()
+    }
+    
+    private func showAnimation() {
+        conditionImageView.showAnimatedGradientSkeleton()
+        temperatureLabel.showAnimatedGradientSkeleton()
+        conditionLabel.showAnimatedGradientSkeleton()
     }
     
     
