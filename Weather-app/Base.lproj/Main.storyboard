@@ -68,7 +68,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="DVX-Fj-OfR">
                             <connections>
-                                <action selector="addLocationButtonTapped:" destination="BYZ-38-t0r" id="0mb-eZ-6Az"/>
+                                <action selector="addCityButtonTapped:" destination="BYZ-38-t0r" id="0mb-eZ-6Az"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -76,7 +76,7 @@
                         <outlet property="conditionImageView" destination="wjf-pV-WhW" id="rGh-wE-UDQ"/>
                         <outlet property="conditionLabel" destination="MGW-Wm-7l2" id="pPZ-cq-rRC"/>
                         <outlet property="temperatureLabel" destination="zN9-Pb-Ok6" id="HSx-3H-FYE"/>
-                        <segue destination="9SI-A9-5Om" kind="presentation" id="V0b-B0-RtH"/>
+                        <segue destination="9SI-A9-5Om" kind="presentation" identifier="showAddCity" id="V0b-B0-RtH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -87,16 +87,84 @@
         <scene sceneID="vfk-1U-2vj">
             <objects>
                 <viewController id="9SI-A9-5Om" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pWd-a3-EGh">
+                    <view key="view" contentMode="scaleToFill" id="2X3-xN-2he">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="dMv-lx-ehL"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0bz-FR-DfF" userLabel="container view">
+                                <rect key="frame" x="67" y="256" width="280" height="287"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ERK-sd-Yzi">
+                                        <rect key="frame" x="24" y="24" width="232" height="196"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter city" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqD-rx-cz5">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="26"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCm-RJ-Kgh">
+                                                <rect key="frame" x="0.0" y="38" width="232" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Teg-h7-0xx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-Nh-t1m">
+                                                <rect key="frame" x="0.0" y="90" width="232" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="HQj-oW-2qp"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <state key="normal" title="Search">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="upB-nK-IgS">
+                                                <rect key="frame" x="0.0" y="142" width="232" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fz3-Qf-nt0">
+                                                <rect key="frame" x="0.0" y="174" width="232" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="3R8-2m-slP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ERK-sd-Yzi" secondAttribute="trailing" constant="24" id="6Z8-5c-6eo"/>
+                                    <constraint firstItem="ERK-sd-Yzi" firstAttribute="top" secondItem="0bz-FR-DfF" secondAttribute="top" constant="24" id="7Xl-P9-UVU"/>
+                                    <constraint firstAttribute="width" constant="280" id="93J-vt-tZO"/>
+                                    <constraint firstAttribute="bottom" secondItem="ERK-sd-Yzi" secondAttribute="bottom" constant="24" id="I7M-9P-jsj"/>
+                                    <constraint firstItem="ERK-sd-Yzi" firstAttribute="leading" secondItem="0bz-FR-DfF" secondAttribute="leading" constant="24" id="ihq-63-7lF"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BUN-0b-9c3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0bz-FR-DfF" firstAttribute="top" secondItem="BUN-0b-9c3" secondAttribute="top" constant="299" id="6hI-WC-U5g"/>
+                            <constraint firstItem="0bz-FR-DfF" firstAttribute="centerX" secondItem="2X3-xN-2he" secondAttribute="centerX" id="S42-13-qIh"/>
+                            <constraint firstItem="0bz-FR-DfF" firstAttribute="centerY" secondItem="2X3-xN-2he" secondAttribute="centerY" id="uBC-qc-I1g"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjI-bg-rBS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1717" y="88"/>
+            <point key="canvasLocation" x="1715.9420289855075" y="87.723214285714278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ohZ-GB-fOx">
@@ -120,8 +188,14 @@
     <resources>
         <image name="imClouds" width="512" height="512"/>
         <image name="location" catalog="system" width="128" height="121"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
