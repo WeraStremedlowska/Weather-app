@@ -17,11 +17,13 @@ class AddCityViewContreller: UIViewController{
     
     private let weatherManager = WeatherManager()
     
+    weak var delegate: WeatherViewControllerDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupGestures()
+        setupGestures()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +61,7 @@ class AddCityViewContreller: UIViewController{
     }
     
     private func handleSearch(query: String) {
+        view.endEditing(true)
         activityIndicatorView.startAnimating()
         weatherManager.fetchWeather(byCity: query) { [weak self] (result) in
             guard let this = self else { return }
@@ -76,6 +79,9 @@ class AddCityViewContreller: UIViewController{
         statusLabel.isHidden = false
         statusLabel.textColor = .systemGreen
         statusLabel.text = "Success!"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.delegate?.didUpdateWeatherFromSearch(model: model)
+        }
     }
 }
 
