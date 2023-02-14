@@ -31,8 +31,6 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         showAnimation()
         fetchWeather()
-        
-//        weatherManager.fetchWeather(byCity: "Paris")
     }
     
     private func fetchWeather() {
@@ -87,6 +85,7 @@ class WeatherViewController: UIViewController {
             locationManager.requestLocation()
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            locationManager.requestLocation()
         default:
             promptForLocationPermission()
         }
@@ -120,7 +119,12 @@ extension WeatherViewController: WeatherViewControllerDelegate {
 extension WeatherViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        if let location = locations.last {
+            manager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            print(lat, lon)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
