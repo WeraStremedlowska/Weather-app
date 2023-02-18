@@ -66,7 +66,7 @@ class AddCityViewController: UIViewController {
         guard let queryCity = cityTextField.text, !queryCity.isEmpty else {
             showSearchError(text: "Please provide City name.")
             return }
-                handleSearch(queryCountry: queryCountry, queryCity: queryCity)                
+                handleSearch(queryCity: queryCity, queryCountry: queryCountry)
                 return
     }
     
@@ -76,10 +76,10 @@ class AddCityViewController: UIViewController {
         statusLabel.text = text
     }
     
-    private func handleSearch(queryCountry: String, queryCity: String) {
+    private func handleSearch(queryCity: String, queryCountry: String) {
         view.endEditing(true)
         activityIndicatorView.startAnimating()
-        weatherManager.fetchWeather(byCountry: queryCountry, byCity: queryCity) { [weak self] (result) in
+        weatherManager.fetchWeather(byCity: queryCity, byCountry: queryCountry) { [weak self] (result) in
             guard let this = self else { return }
             this.activityIndicatorView.stopAnimating()
             switch result {

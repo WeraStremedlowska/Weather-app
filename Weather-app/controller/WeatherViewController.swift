@@ -14,7 +14,7 @@ protocol WeatherViewControllerDelegate: class {
     func didUpdateWeatherFromSearch(model: WeatherModel)
 }
 
-class WeatherViewController: UIViewController {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var locationButton: UIBarButtonItem!
     @IBOutlet weak var addCityButton: UIBarButtonItem!
@@ -22,7 +22,10 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     
+    private let defaultCity = "London"
+    private let defaultCountry = "GB"
     private let weatherManager = WeatherManager()
+    private let cacheManager = CacheManager()
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -32,9 +35,36 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchWeather(byCity: "London", byCountry: "GB")
-//
+
 //        locationButton.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.locationButton
+//        addCityButton.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.addCityButton
+//        conditionImageView.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.conditionImageView
+//        temperatureLabel.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.temperatureLabel
+//        conditionLabel.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.conditionLabel
+        
+        let city = displayedCity()
+        let country = displayedCountry()
+        
+        fetchWeatherWhenOpenApp(byCity: city, byCountry: country)
+        
+    }
+    
+    private func displayedCity() -> String {
+        let city = cacheManager.getCachedCity() ?? defaultCity
+        return city
+    }
+    
+    private func displayedCountry() -> String {
+        let country = cacheManager.getCachedCity() ?? defaultCountry
+        return country
+    }
+    
+    private func fetchWeatherWhenOpenApp(byCity city: String, byCountry country: String) {
+        showAnimation()
+        weatherManager.fetchWeather(byCity: city, byCountry: country) { [weak self] (result) in
+            guard let this = self else { return }
+            this.handleLocationWhenOpenApp(result)
+        }
         
     }
     
@@ -50,7 +80,7 @@ class WeatherViewController: UIViewController {
     
     private func fetchWeather(byCity city: String, byCountry country: String) {
         showAnimation()
-        weatherManager.fetchWeather(byCountry: country, byCity: city) { [weak self] (result) in
+        weatherManager.fetchWeather(byCity: city, byCountry: country) { [weak self] (result) in
             guard let this = self else { return }
             this.handleResult(result)
         }
@@ -74,6 +104,26 @@ class WeatherViewController: UIViewController {
         conditionLabel.text = "Something went wrong.\nPlease define location."
         Loaf(error.localizedDescription, state: .error, location: .bottom, sender: self).show()
     }
+        
+        private func handleLocationWhenOpenApp(_ result: Result<WeatherModel, Error>) {
+            switch result {
+            case .success(let model):
+                updateView(with: model)
+                print(result)
+            case .failure(let error):
+                handleLocationErrorWhenOpenApp(error)
+            }
+        }
+        
+        private func handleLocationErrorWhenOpenApp(_ error: Error) {
+            let city = defaultCity
+            let country = defaultCountry
+            showAnimation()
+            weatherManager.fetchWeather(byCity: city, byCountry: country) { [weak self] (result) in
+                guard let this = self else { return }
+                this.handleResult(result)
+            }
+        }
     
     private func updateView(with model: WeatherModel) {
         hideAnimation()
@@ -123,8 +173,10 @@ class WeatherViewController: UIViewController {
     }
     
     private func promptForLocationPermission() {
-        let alertController = UIAlertController(title: "Requires Location Permission", message:
-            "Would you like to enable location permission in Settings?", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: "Requires Location Permission",
+            message: "Would you like to enable location permission in Settings?",
+            preferredStyle: .alert)
         let enableActoin = UIAlertAction(title: "Go to Settings", style: .default) { _ in
             guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
@@ -147,7 +199,7 @@ extension WeatherViewController: WeatherViewControllerDelegate {
     }
 }
 
-extension WeatherViewController: CLLocationManagerDelegate {
+extension WeatherViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {

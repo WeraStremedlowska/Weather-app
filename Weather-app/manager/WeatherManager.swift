@@ -32,6 +32,7 @@ enum WeatherError: Error, LocalizedError {
 struct WeatherManager {
         
     private let API_KEY = "19990688e82bc411110e04f530338e8a"
+    private let cacheManager = CacheManager()
     
     func fetchWeather(lat: Double, lon: Double, completion: @escaping(Result<WeatherModel, Error>) -> Void) {
         let path = "https://api.openweathermap.org/data/2.5/weather?appid=%@&units=metric&lat=%f&lon=%f"
@@ -39,9 +40,9 @@ struct WeatherManager {
         handleRequest(urlString: urlString, completion: completion)
     }
     
-    func fetchWeather(byCountry country: String, byCity city: String,  completion: @escaping(Result<WeatherModel, Error>) -> Void) {
-        let gueryCountry = country.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? country
+    func fetchWeather(byCity city: String, byCountry country: String, completion: @escaping(Result<WeatherModel, Error>) -> Void) {
         let gueryCity = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? city
+        let gueryCountry = country.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? country
         let path = "https://api.openweathermap.org/data/2.5/weather?q=%@,%@&appid=%@&units=metric"
         let urlString = String(format: path, gueryCity, gueryCountry, API_KEY)
         handleRequest(urlString: urlString, completion: completion)
@@ -54,6 +55,8 @@ struct WeatherManager {
             switch response.result {
             case .success(let weatherData):
                 let model = weatherData.model
+                self.cacheManager.cacheCity(cityName: model.cityName)
+                self.cacheManager.cacheCountry(countryName: model.countryName)
                 completion(.success(model))
             case .failure(let error):
                 if let err = self.getWeatherError(error: error, data: response.data) {

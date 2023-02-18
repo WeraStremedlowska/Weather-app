@@ -14,13 +14,13 @@ struct AccessibilityIdentifiers {
     struct LaunchScreen {
         static let weatherAppTitle = "weatherAppTitle"
         static let progressViewBar = "progressViewBar"
-        static let appImage = "appImage"
+        static let appImage = "logo"
     }
     
     struct WeatherViewController {
         static let locationButton = "locationButton"
-        static let addCityButton = "laddCityButton"
-        static let conditionImage = "conditionImage"
+        static let addCityButton = "addCityButton"
+        static let conditionImageView = "conditionImageView"
         static let temperatureLabel = "temperatureLabel"
         static let conditionLabel = "conditionLabel"
     }
