@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7A4EDEC1-8BF5-42C5-AE29-BE89DC3C64DA"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9BEFC806-592F-4BFB-AB98-D2501631791D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather-app/Controller/AddCityViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "handleSearch(queryCity:queryCountry:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2508A0C4-8CE2-47E7-8656-3C23B72283D6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather-app/Controller/AddCityViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "handleSearch(queryCity:queryCountry:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB619833-6B00-4F18-9E40-970099D62492"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather-app/Controller/AddCityViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "AddCityViewController"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01891ADA-1A10-454F-97BE-38176CDEEB6F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather-app/Controller/AddCityViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "gestureRecognizer(_:shouldReceive:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "01891ADA-1A10-454F-97BE-38176CDEEB6F - 6a6edb10eda3e946"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather_app.AddCityViewContreller.(handleSearchSuccess in _1661F2BE0F58EE2EAE964AF2B6859620)(model: Weather_app.WeatherModel) -&gt; ()"
+                  moduleName = "Weather-app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wera/Desktop/Weather-app/Weather-app/Controller/AddCityViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "1068">
+               </Location>
+               <Location
+                  uuid = "01891ADA-1A10-454F-97BE-38176CDEEB6F - 1e1e6a292d9d3bff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Weather_app.AddCityViewContreller.(handleSearchSuccess in _1661F2BE0F58EE2EAE964AF2B6859620)(model: Weather_app.WeatherModel) -&gt; ()"
+                  moduleName = "Weather-app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wera/Desktop/Weather-app/Weather-app/Controller/AddCityViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

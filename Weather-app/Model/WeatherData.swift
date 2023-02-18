@@ -11,13 +11,16 @@ struct WeatherData: Decodable {
     let name: String
     let main: Main
     let weather: [Weather]
+    let sys: Sys
     
     var model: WeatherModel {
         
-        return WeatherModel(countryName: name,
+        return WeatherModel(countryName: sys.country,
+                            cityName: name,
                             temp: main.temp.toInt(),
                             conditionId: weather.first?.id ?? 0,
                             conditionDescription: weather.first?.description ?? "")
+                            
     }
 }
 
@@ -31,11 +34,18 @@ struct Weather: Decodable {
     let description: String
 }
 
-struct WeatherModel {    
+struct Sys: Decodable {
+    let country: String
+}
+
+struct WeatherModel {
     let countryName: String
+    let cityName: String
     let temp: Int
     let conditionId: Int
     let conditionDescription: String
+    
+    
     
     var conditionImage: String {
         switch conditionId {
