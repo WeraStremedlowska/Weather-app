@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import SBTUITestTunnelClient
+
 
 class AddCityScreen: BaseScreen {
     

@@ -1,24 +1,44 @@
 PODS:
   - Alamofire (5.6.4)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
   - Loaf (0.7.0)
+  - SBTUITestTunnelClient (8.3.0):
+    - SBTUITestTunnelCommon
+  - SBTUITestTunnelCommon (8.3.0)
+  - SBTUITestTunnelServer (8.3.0):
+    - GCDWebServer
+    - SBTUITestTunnelCommon
   - SkeletonView (1.30.4)
 
 DEPENDENCIES:
   - Alamofire
+  - GCDWebServer
   - Loaf
+  - SBTUITestTunnelClient
+  - SBTUITestTunnelServer
   - SkeletonView
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - GCDWebServer
     - Loaf
+    - SBTUITestTunnelClient
+    - SBTUITestTunnelCommon
+    - SBTUITestTunnelServer
     - SkeletonView
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   Loaf: d69937cd00649f3fa260beb8b7aef0a1feb861ef
+  SBTUITestTunnelClient: 873869031cec61a5b5540d66f5171a7abdad835d
+  SBTUITestTunnelCommon: 21371c4796ce6826b937d29c79cd8c758f31d775
+  SBTUITestTunnelServer: cb25d44ba2432d46efed49a0c3879c3d59f0915c
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
 
-PODFILE CHECKSUM: bdb7ef66f95ad660eebd6a6dfc16408ada1b799b
+PODFILE CHECKSUM: dadc46d3e8cf810b631188c63edbb812fb1578de
 
 COCOAPODS: 1.11.3

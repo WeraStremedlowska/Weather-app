@@ -1,4 +1,5 @@
-${PODS_ROOT}/Target Support Files/Pods-Weather-app-Weather-appUITests/Pods-Weather-app-Weather-appUITests-frameworks.sh
+${PODS_ROOT}/Target Support Files/Pods-weather-app-weather-appUITests/Pods-weather-app-weather-appUITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework
 ${BUILT_PRODUCTS_DIR}/Loaf/Loaf.framework
 ${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework
