@@ -134,6 +134,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-Nh-t1m">
                                                 <rect key="frame" x="0.0" y="178" width="232" height="37"/>
                                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="SearchButton"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="232" id="UYZ-ak-C8i"/>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="bHd-K1-I8L"/>

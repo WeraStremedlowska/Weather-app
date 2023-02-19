@@ -22,6 +22,7 @@ class weather_appUITests: XCTestCase {
         
         let addCityButton = app.buttons["Add"]
         addCityButton.tap()
+        
         let cityTextField = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .textField).element(boundBy: 0)
                 cityTextField.tap()
         cityTextField.typeText("Paris")
@@ -32,7 +33,7 @@ class weather_appUITests: XCTestCase {
         searchButton.tap()
         let statusLabel = app.staticTexts["Country cannot be empty."]
         
-        XCTAssert(statusLabel.exists, "Country cannot be empty.")
+        XCTAssert(statusLabel.exists)
         
     }
 }
