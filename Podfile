@@ -8,6 +8,8 @@ target 'Weather-app' do
   pod 'SkeletonView'
   pod 'Alamofire'
   pod 'Loaf'
+  pod 'SBTUITestTunnelServer'
+  pod 'GCDWebServer', :inhibit_warnings => true
 
   target 'Weather-appTests' do
     inherit! :search_paths
@@ -15,7 +17,7 @@ target 'Weather-app' do
   end
 
   target 'Weather-appUITests' do
-    # Pods for testing
+    pod 'SBTUITestTunnelClient'
   end
 
 end
