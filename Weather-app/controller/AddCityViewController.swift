@@ -23,21 +23,17 @@ class AddCityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cityTextField.accessibilityIdentifier = AccessibilityIdentifiers.AddCityViewController.cityTextField
+        countryTextField.accessibilityIdentifier = AccessibilityIdentifiers.AddCityViewController.countryTextField
+        searchButton.accessibilityIdentifier = AccessibilityIdentifiers.AddCityViewController.searchButton
+        activityIndicatorView.accessibilityIdentifier = AccessibilityIdentifiers.AddCityViewController.activityIndicatorView
+        statusLabel.accessibilityIdentifier = AccessibilityIdentifiers.AddCityViewController.statusLabel
+        
         setupViews()
         setupGestures()        
     }
-//
-//
-//    cityTextField.accessibilityIdentifier =
-//        AccessibilityIdentifiers.AddCityViewController.cityTextField
-//    countryTextField.accessibilityIdentifier =
-//        AccessibilityIdentifiers.AddCityViewController.countryTextField
-//    searchButton.accessibilityIdentifier =
-//        AccessibilityIdentifiers.AddCityViewController.searchButton
-//    statusLabel.accessibilityIdentifier =
-//        AccessibilityIdentifiers.AddCityViewController.statusLabel
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cityTextField.becomeFirstResponder()

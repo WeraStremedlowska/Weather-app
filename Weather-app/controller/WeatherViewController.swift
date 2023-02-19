@@ -129,7 +129,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         hideAnimation()
         temperatureLabel.text = model.temp.toString().appending("°C")
         conditionLabel.text = model.conditionDescription
-        navigationItem.title = (model.cityName + "," + model.countryName)
+        navigationItem.title = (model.cityName + ", " + model.countryName)
         conditionImageView.image = UIImage(named: model.conditionImage)
 
     }

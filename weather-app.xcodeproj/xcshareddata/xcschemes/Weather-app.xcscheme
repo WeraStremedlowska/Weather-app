@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2CB920D2997F32700530031"
+               BlueprintIdentifier = "D244D85529A13EBD00057498"
                BuildableName = "weather-appUITests.xctest"
                BlueprintName = "weather-appUITests"
                ReferencedContainer = "container:weather-app.xcodeproj">

@@ -31,7 +31,7 @@ struct AccessibilityIdentifiers {
         static let enterCountryLabel = "enterCountryLabel"
         static let countryTextField = "countryTextField"
         static let searchButton = "searchButton"
-        static let ctivityIndicatorView = "ctivityIndicatorView"
+        static let activityIndicatorView = "activityIndicatorView"
         static let statusLabel = "statusLabel"
     }
 }
