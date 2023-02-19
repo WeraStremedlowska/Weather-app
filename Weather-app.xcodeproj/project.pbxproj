@@ -226,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = UIObjects;
+			name = UIObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
