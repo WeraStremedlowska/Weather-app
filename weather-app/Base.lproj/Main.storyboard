@@ -61,7 +61,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aC1-xw-Bph">
-                        <barButtonItem key="leftBarButtonItem" image="location" catalog="system" id="KRj-AW-kEn">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="location" catalog="system" id="KRj-AW-kEn">
                             <connections>
                                 <action selector="locationButtonTapped:" destination="BYZ-38-t0r" id="i9j-6E-ri6"/>
                             </connections>
@@ -129,7 +129,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="1Mp-Y9-ROX"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-Nh-t1m">
                                                 <rect key="frame" x="0.0" y="178" width="232" height="37"/>

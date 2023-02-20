@@ -8,23 +8,18 @@
 import XCTest
 
 class weather_appUITests: BaseTest {
-
-    func testEnterErrorCountry() throws {
+    
+    func testAddLocation() {
+        let city = "Paris"
+        let country = "FR"
         
-        let addCityButton = app.buttons["Add"]
-        addCityButton.tap()
-        
-        let cityTextField = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .textField).element(boundBy: 0)
-                cityTextField.tap()
-        cityTextField.typeText("Paris")
-        let countryTextField = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .textField).element(boundBy: 1)
-                countryTextField.tap()
-
-        let searchButton = app.buttons["Search"]
-        searchButton.tap()
-        let statusLabel = app.staticTexts["Country cannot be empty."]
-        
-        XCTAssert(statusLabel.exists)
-        
+        WeatherViewScreen()
+            .assertWeatherViewScreenDisplayed()
+            .addLocation()
+            .assertAddCityScreenDisplayed()
+            .typeCity(city: city)
+            .typeCountry(country: country)
+            .tapSearchButtonAndReturnTo(screen: AddCityScreen.self)
+            .verifySuccessMessage()
     }
 }

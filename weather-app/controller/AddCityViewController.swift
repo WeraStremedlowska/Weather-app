@@ -55,7 +55,7 @@ class AddCityViewController: UIViewController {
     }
     
     @IBAction func searchButtonTapped(_ sender: Any) {
-//        statusLabel.isHidden = true
+        statusLabel.isHidden = true
         guard let queryCountry = countryTextField.text, !queryCountry.isEmpty else {
             showSearchError(text: "Country cannot be empty.")
             return }
