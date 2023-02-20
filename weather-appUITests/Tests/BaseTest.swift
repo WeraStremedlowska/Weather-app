@@ -6,7 +6,16 @@
 //
 
 import XCTest
+import SBTUITestTunnelClient
 
 class BaseTest: XCTestCase {
     
+    static var shared: BaseTest!
+    
+    override func setUp() {
+        super.setUp()
+        BaseTest.shared = self
+        continueAfterFailure = false
+        app.launch()
+    }
 }

@@ -7,18 +7,9 @@
 
 import XCTest
 
-class weather_appUITests: XCTestCase {
-
-    override func setUpWithError() throws {
-        continueAfterFailure = false
-    }
-
-    override func tearDownWithError() throws {
-    }
+class weather_appUITests: BaseTest {
 
     func testEnterErrorCountry() throws {
-        let app = XCUIApplication()
-        app.launch()
         
         let addCityButton = app.buttons["Add"]
         addCityButton.tap()

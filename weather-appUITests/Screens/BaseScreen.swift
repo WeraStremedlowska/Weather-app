@@ -6,25 +6,13 @@
 //
 
 import XCTest
+import SBTUITestTunnelClient
 
 class BaseScreen {
-    static let app = XCUIApplication()
+    lazy var app: SBTUITunneledApplication! = BaseTest.shared.app
+    static let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
     
-    let visibleTimeout: TimeInterval = 2.0
+    let visibleTimeout = 5.0
     
-    func tap(_ element: XCUIElement) {
-        guard element.waitForExistence(timeout: visibleTimeout) else {
-            XCTFail("\(element.description) is not visible")
-            return
-        }
-        element.tap()
-    }
-
-    func type(_ text: String, element: XCUIElement) {
-        guard element.waitForExistence(timeout: visibleTimeout) else {
-            XCTFail("\(element.description) is not visible")
-            return
-        }
-        element.typeText(text)
-    }
+    required init() { }
 }

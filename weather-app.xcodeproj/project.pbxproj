@@ -151,7 +151,7 @@
 		D244D85729A13EBD00057498 /* weather-appUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D2F9132629A2537A008C7C7C /* UIObjects */,
+				D2BD14AE29A2DFDA00B56457 /* Utils */,
 				D2F9130E29A24B6F008C7C7C /* Screens */,
 				D2F9131529A24DA0008C7C7C /* Tests */,
 				D244D85A29A13EBD00057498 /* Info.plist */,
@@ -166,6 +166,13 @@
 				D27EB93C299A36CD008A769E /* AddCityViewController.swift */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		D2BD14AE29A2DFDA00B56457 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D2CB91E42997F32300530031 = {
@@ -232,13 +239,6 @@
 				D2F9131629A24DCE008C7C7C /* BaseTest.swift */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		D2F9132629A2537A008C7C7C /* UIObjects */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
