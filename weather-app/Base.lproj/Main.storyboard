@@ -61,7 +61,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aC1-xw-Bph">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="location" catalog="system" id="KRj-AW-kEn">
+                        <barButtonItem key="leftBarButtonItem" title="Location" image="location" catalog="system" id="KRj-AW-kEn">
                             <connections>
                                 <action selector="locationButtonTapped:" destination="BYZ-38-t0r" id="i9j-6E-ri6"/>
                             </connections>

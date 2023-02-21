@@ -12,7 +12,7 @@ class BaseScreen {
     lazy var app: SBTUITunneledApplication! = BaseTest.shared.app
     static let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
     
-    let visibleTimeout = 5.0
+    let visibleTimeout = 3.0
     
     required init() { }
 }

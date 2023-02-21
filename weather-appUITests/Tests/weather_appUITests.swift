@@ -21,5 +21,21 @@ class weather_appUITests: BaseTest {
             .typeCountry(country: country)
             .tapSearchButtonAndReturnTo(screen: AddCityScreen.self)
             .verifySuccessMessage()
+            .assertWeatherViewScreenDisplayed()
+    }
+    
+    func testWrongCityError() {
+        let city = "l"
+        let country = "FR"
+        let expectedError = "city not found"
+        
+        WeatherViewScreen()
+            .assertWeatherViewScreenDisplayed()
+            .addLocation()
+            .assertAddCityScreenDisplayed()
+            .typeCity(city: city)
+            .typeCountry(country: country)
+            .tapSearchButtonAndReturnTo(screen: AddCityScreen.self)
+            .verifyError(expectedError: expectedError)
     }
 }

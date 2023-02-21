@@ -14,8 +14,8 @@
             filePath = "Weather-app/Controller/AddCityViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "handleSearch(queryCity:queryCountry:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Weather-app/Controller/AddCityViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "handleSearch(queryCity:queryCountry:)"
             landmarkType = "7">
          </BreakpointContent>

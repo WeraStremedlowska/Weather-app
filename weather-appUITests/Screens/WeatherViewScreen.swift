@@ -10,7 +10,7 @@ import XCTest
 class WeatherViewScreen: BaseScreen {
     private lazy var navigationBarTitle: Title = .init(element: app.navigationBars.element)
     private lazy var addCityButton: Button = .init(element: app.navigationBars.buttons["Add"])
-    private lazy var locationButton: Button = .init(element: app.navigationBars.buttons["Item"])
+    private lazy var locationButton: Button = .init(element: app.navigationBars.buttons["Location"])
     private lazy var conditionImage: Image = .init(element: app.staticTexts["conditionImage"])
     private lazy var temperatureLabel: Label = .init(element: app.staticTexts["temperatureLabel"])
     private lazy var conditionLabel: Label = .init(element: app.staticTexts["conditionLabel"])
@@ -56,7 +56,7 @@ extension WeatherViewScreen {
     }
     
     func assertLocationButton() {
-        _ = XCTContext.runActivity(named: "Item Button Exists") { _ in
+        _ = XCTContext.runActivity(named: "Location Button Exists") { _ in
             locationButton.assert(state: .exists, result: true)
         }
     }

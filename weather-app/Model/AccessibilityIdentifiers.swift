@@ -18,7 +18,7 @@ struct AccessibilityIdentifiers {
     }
     
     struct WeatherViewController {
-        static let locationButton = "Item"
+        static let locationButton = "Location"
         static let addCityButton = "Add"
         static let conditionImageView = "conditionImageView"
         static let temperatureLabel = "temperatureLabel"

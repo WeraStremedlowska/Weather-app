@@ -11,7 +11,7 @@ class BaseElement {
     let element: XCUIElement
     let timeout: Double
     
-    init(element: XCUIElement, timeout: Double = 5.0) {
+    init(element: XCUIElement, timeout: Double = 8.0) {
         self.element = element
         self.timeout = timeout
     }
@@ -102,7 +102,7 @@ extension BaseElement {
     //Wait for value
     @discardableResult
     func wait(for attribute: ElementAttribute, value: Any) -> Self? {
-        let predicate = NSPredicate(format: "\(attribute.rawValue) == \(value)")
+        let predicate = NSPredicate(format: "\(attribute.rawValue) == \"\(value)\"")
         let expectation = XCTNSPredicateExpectation(predicate: predicate, object: element)
         return XCTWaiter.wait(for: [expectation], timeout: timeout) == .completed ? self : nil
     }
@@ -119,7 +119,7 @@ extension BaseElement {
     @discardableResult
     func assert(for attribute: ElementAttribute, value: Any) -> Self? {
         if wait(for: attribute, value: value) == nil {
-            XCTFail("Element: value of: \(attribute) is not equal to \(value).")
+            XCTFail("Element: value of \(attribute) is not equal to \(value).")
             return nil
         }
         return self

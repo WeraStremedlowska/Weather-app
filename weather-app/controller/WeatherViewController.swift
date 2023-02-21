@@ -38,9 +38,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
 //        locationButton.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.locationButton
 //        addCityButton.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.addCityButton
-//        conditionImageView.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.conditionImageView
-//        temperatureLabel.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.temperatureLabel
-//        conditionLabel.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.conditionLabel
+        conditionImageView.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.conditionImageView
+        temperatureLabel.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.temperatureLabel
+        conditionLabel.accessibilityIdentifier = AccessibilityIdentifiers.WeatherViewController.conditionLabel
         
         let city = displayedCity()
         let country = displayedCountry()

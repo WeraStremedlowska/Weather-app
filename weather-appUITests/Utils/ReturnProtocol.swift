@@ -5,7 +5,7 @@
 //  Created by Wera Stremedlowska on 20.02.23.
 //
 
-import Foundation
+import XCTest
 import SBTUITestTunnelClient
 
 protocol ReturnProtocol: BaseScreen {

@@ -66,12 +66,6 @@ class AddCityViewController: UIViewController {
                 return
     }
     
-    private func showSearchError(text: String) {
-        statusLabel.isHidden = false
-        statusLabel.textColor = .systemRed
-        statusLabel.text = text
-    }
-    
     private func handleSearch(queryCity: String, queryCountry: String) {
         view.endEditing(true)
         activityIndicatorView.startAnimating()
@@ -91,10 +85,16 @@ class AddCityViewController: UIViewController {
         statusLabel.isHidden = false
         statusLabel.textColor = .systemGreen
         statusLabel.text = "Success!"
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             guard let this = self else { return }
             this.delegate?.didUpdateWeatherFromSearch(model: model)
         }
+    }
+    
+    private func showSearchError(text: String) {
+        statusLabel.isHidden = false
+        statusLabel.textColor = .systemRed
+        statusLabel.text = text
     }
 }
 

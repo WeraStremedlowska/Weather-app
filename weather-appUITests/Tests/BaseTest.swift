@@ -16,6 +16,6 @@ class BaseTest: XCTestCase {
         super.setUp()
         BaseTest.shared = self
         continueAfterFailure = false
-        app.launch()
+        app.launchTunnel()
     }
 }
