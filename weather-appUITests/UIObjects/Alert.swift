@@ -17,6 +17,11 @@ class Alert: BaseElement {
         button.tap()
     }
     
+    func tapButton(name: String) {
+        let button: Button = .init(element: element.buttons[name])
+        button.tap()
+    }
+    
     func labels() -> Label {
         Label(element: element)
     }
@@ -26,7 +31,7 @@ class Alert: BaseElement {
     }
     
     @discardableResult
-    func asserAlert(title: String, body: String, buttons: [String]) -> Self {
+    func assertAlert(title: String, body: String, buttons: [String]) -> Self {
         alertTitle.assert(for: .label, value: title)
         alertBody.assert(for: .label, value: body)
         for buttonName in buttons {

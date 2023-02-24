@@ -16,16 +16,13 @@ struct CacheManager {
         case country
     }
     
-    func cacheCity(cityName: String) {
-        vault.set(cityName, forKey: Key.city.rawValue)        
+    func cacheCityCountry(cityName: String, countryName: String) {
+        vault.set(cityName, forKey: Key.city.rawValue)
+        vault.set(countryName, forKey: Key.country.rawValue)
     }
     
     func getCachedCity() -> String? {
         return vault.value(forKey: Key.city.rawValue) as? String
-    }
-    
-    func cacheCountry(countryName: String) {
-        vault.set(countryName, forKey: Key.country.rawValue)
     }
     
     func getCachedCountry() -> String? {

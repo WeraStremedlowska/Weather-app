@@ -34,29 +34,32 @@ struct WeatherManager {
     private let API_KEY = "19990688e82bc411110e04f530338e8a"
     private let cacheManager = CacheManager()
     
+    //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={your api key}
     func fetchWeather(lat: Double, lon: Double, completion: @escaping(Result<WeatherModel, Error>) -> Void) {
         let path = "https://api.openweathermap.org/data/2.5/weather?appid=%@&units=metric&lat=%f&lon=%f"
         let urlString = String(format: path, API_KEY, lat, lon)
         handleRequest(urlString: urlString, completion: completion)
     }
     
+    //api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={your api key}
     func fetchWeather(byCity city: String, byCountry country: String, completion: @escaping(Result<WeatherModel, Error>) -> Void) {
         let gueryCity = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? city
         let gueryCountry = country.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? country
         let path = "https://api.openweathermap.org/data/2.5/weather?q=%@,%@&appid=%@&units=metric"
         let urlString = String(format: path, gueryCity, gueryCountry, API_KEY)
+        
         handleRequest(urlString: urlString, completion: completion)
     }
     
     private func handleRequest(urlString: String, completion: @escaping(Result<WeatherModel, Error>) -> Void) {
         AF.request(urlString)
             .validate()
-            .responseDecodable(of: WeatherData.self, queue: .main, decoder: JSONDecoder()) {(response) in
+            .responseDecodable(of: WeatherData.self, queue: .main,
+                               decoder: JSONDecoder()) {(response) in
             switch response.result {
             case .success(let weatherData):
                 let model = weatherData.model
-                self.cacheManager.cacheCity(cityName: model.cityName)
-                self.cacheManager.cacheCountry(countryName: model.countryName)
+                self.cacheManager.cacheCityCountry(cityName: model.cityName, countryName: model.countryName)
                 completion(.success(model))
             case .failure(let error):
                 if let err = self.getWeatherError(error: error, data: response.data) {

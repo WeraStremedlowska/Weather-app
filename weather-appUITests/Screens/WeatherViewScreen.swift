@@ -14,6 +14,10 @@ class WeatherViewScreen: BaseScreen {
     private lazy var conditionImage: Image = .init(element: app.staticTexts["conditionImage"])
     private lazy var temperatureLabel: Label = .init(element: app.staticTexts["temperatureLabel"])
     private lazy var conditionLabel: Label = .init(element: app.staticTexts["conditionLabel"])
+    
+    private lazy var locationSystemAlert: LocationAlert = .init(element:
+                                        BaseScreen.springboard.alerts.firstMatch, timeout: 2.0)
+    private lazy var locationPermissionAlert: Alert = .init(element: app.alerts.firstMatch, timeout: 2.0)
 }
 
 // MARK: - Prime functions
@@ -26,13 +30,103 @@ extension WeatherViewScreen {
         }
     }
     
-//    public func getCurrentLocation() -> String {
-//        XCTContext.runActivity(named: "Get current Location if Location Title is not empty") { _ in
-//            if navigationBarTitle.contains(text: "WeatherView") == true {
-//                XCTFail("Location is not available at this time.")
-//            }
-//        }
-//    }
+    public func getCurrentLocation() -> String {
+        XCTContext.runActivity(named: "Get current Location if Location Title is not empty") { _ in
+            assertNavigationBarTitle()
+            if navigationBarTitle.contains(text: "WeatherView") == true {
+                XCTFail("Location is not available at this time.")
+                return "Error"
+            } else {
+                let currentLocation = navigationBarTitle.identifier
+                print("***** Location: \(currentLocation)")
+                return currentLocation
+            }
+        }
+    }
+}
+
+//MARK: - Location Verification
+extension WeatherViewScreen {
+    
+    public func verifyLocationChanged(savedLocation: String, expectedLocation: String) {
+        _ = XCTContext.runActivity(named: "Wait 2 sec for Location update") { _ in
+            sleep(2)
+        }
+        XCTContext.runActivity(named: "Check if Location changed OR remains the same.") { _ in
+            assertNavigationBarTitle()
+            guard savedLocation != expectedLocation else {
+                navigationBarTitle.assert(for: .identifier, value: expectedLocation)
+                print("***** Location remains the same.")
+                return
+            }
+            navigationBarTitle.assert(for: .identifier, value: expectedLocation)
+            print("***** Location changed")
+        }
+    }
+    
+    @discardableResult
+    public func verifyLocationNotChanged(savedLocation: String) -> AddCityScreen {
+        XCTContext.runActivity(named: "Verify if Location is not empty AND NOT changed") { _ in
+            assertNavigationBarTitle()
+            guard navigationBarTitle.contains(text: "WeatherView") == false else {
+                XCTFail("Location is not available at this time.")
+                return .init()
+            }
+            navigationBarTitle.assert(for: .identifier, value: savedLocation)
+            return .init()
+        }
+    }
+
+    @discardableResult
+    public func verifyLocation(expectedLocation: String) -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Verify if Location as expected") { _ in
+            assertNavigationBarTitle()
+            navigationBarTitle.assert(for: .identifier, value: expectedLocation)
+            return .init()
+        }
+    }
+
+    @discardableResult
+    public func verifyLocationNotACountry(countryCode: String) -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Verify if Location is not a Country") { _ in
+            assertNavigationBarTitle()
+            guard !navigationBarTitle.contains(text: countryCode) else {
+                XCTFail("Country is the same as \(countryCode)")
+                return .init()
+            }
+            return .init()
+        }
+    }
+}
+
+// MARK: - Weather Status
+extension WeatherViewScreen {
+
+    public func collectTemperature() -> String {
+        XCTContext.runActivity(named: "Collect the Temperature") { _ in
+            assertTemperatureLabel()
+            return temperatureLabel.text
+        }
+    }
+
+    public func collectCondition() -> String {
+        XCTContext.runActivity(named: "Collect Weather Condition") { _ in
+            assertConditionLabel()
+            return conditionLabel.text
+        }
+    }
+
+    @discardableResult
+    public func verifyTemperatureAndCondition(savedTemperature: String,
+                                              savedCondition: String) -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Verify if Temperature and Weather condition as expected") { _ in
+            print("savedTemperature: \(savedTemperature), savedCondition: \(savedCondition)")
+            print("temperatureLabel.label: \(temperatureLabel.text), conditionLabel.label: \(conditionLabel.text)")
+            temperatureLabel.assert(for: .label, value: savedTemperature)
+            conditionLabel.assert(for: .label, value: savedCondition)
+            return .init()
+        }
+    }
 }
 
 //MARK: - Elements Assertions
@@ -40,13 +134,11 @@ extension WeatherViewScreen {
     
     func assertWeatherViewScreenDisplayed() -> Self {
         XCTContext.runActivity(named: "Verify WeatherView Screen Displayed") { _ in
-            assertTitle()
+            assertNavigationBarTitle()
             assertAddCityButton()
             assertLocationButton()
-//            assertTemperatureLabel()
-//            assertConditionLabel()
-            return self
         }
+        return self
     }
     
     func assertAddCityButton() {
@@ -61,7 +153,7 @@ extension WeatherViewScreen {
         }
     }
     
-    func assertTitle() {
+    func assertNavigationBarTitle() {
         _ = XCTContext.runActivity(named: "Title Exists") { _ in
             navigationBarTitle.assert(state: .exists, result: true)
         }
@@ -78,4 +170,71 @@ extension WeatherViewScreen {
             conditionLabel.assert(state: .exists, result: true)
         }
     }
+}
+
+// MARK: - Allerts
+extension WeatherViewScreen {
+
+    @discardableResult
+    public func checkLocationPermissionAlert(tap button: LocationPermissionAlertChoises) -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Check if location Permition Alert appeared") { _ in
+            guard locationPermissionAlert.wait(state: .exists, result: false) != nil else {
+                locationPermissionAlert
+                    .wait(state: .exists, result: true)?
+                    .assertAlert(title: "Requires Location Permission",
+                                 body: "Would you like to enable location permission in Settings?",
+                                 buttons: ["Cancel", "Go to Settings"])
+                    .tapButton(name: button.rawValue)
+                verifyLocationPermissionAlertDismissed()
+                XCTFail("***** Location for WeatherApp is disabled on your device.")
+                return .init()
+            }
+            return .init()
+        }
+    }
+
+    @discardableResult
+    public func checkLocationSystemAlert(tap button: LocationSystemAlertChoises) -> WeatherViewScreen {
+        // Unable to add XCTContext
+        guard locationSystemAlert.wait(state: .exists, result: false) != nil else {
+            locationSystemAlert
+                .wait(state: .exists, result: true)?
+                .assertAlert(title: "Allow “WeatherApp” to use your location?",
+                             body: "Your location is required to show your local weather",
+                             buttons: ["Allow While Using App", "Allow Once", "Don’t Allow"])
+                .tapButton(name: button.rawValue)
+            verifyLocationSystemAlertDismissed()
+            return .init()
+        }
+        return .init()
+    }
+
+    @discardableResult
+    public func verifyLocationSystemAlertDismissed() -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Verify if Location System Alert dismissed when tapping the option") { _ in
+            locationSystemAlert.assert(state: .exists, result: false)
+            return .init()
+        }
+    }
+
+    @discardableResult
+    public func verifyLocationPermissionAlertDismissed() -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Verify if Location Permition Alert dismissed when tapping the option") { _ in
+            locationPermissionAlert.assert(state: .exists, result: false)
+            return .init()
+        }
+    }
+}
+
+// MARK: - Enums
+
+enum LocationPermissionAlertChoises: String {
+    case cancel = "Cancel"
+    case goToSettings = "Go to Settings"
+}
+
+enum LocationSystemAlertChoises: String {
+    case allowWhileUsingApp =  "Allow While Using App"
+    case allowOnce = "Allow Once"
+    case dontAllow = "Don't Allow"
 }
