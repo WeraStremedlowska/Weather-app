@@ -13,6 +13,12 @@
 		D20D722C2998287B00D92419 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20D722B2998287B00D92419 /* WeatherManager.swift */; };
 		D2108D10299D624800053324 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2108D0F299D624800053324 /* AccessibilityIdentifiers.swift */; };
 		D22C95E6299ACEBC0041E5D7 /* WeatherDataFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C95E5299ACEBC0041E5D7 /* WeatherDataFailure.swift */; };
+		D2381FDD29AE414D0039CB5E /* CorrectData.json in Resources */ = {isa = PBXBuildFile; fileRef = D2381FDC29AE414D0039CB5E /* CorrectData.json */; };
+		D2381FE329AE42490039CB5E /* IncorrectData.json in Resources */ = {isa = PBXBuildFile; fileRef = D2381FE229AE42490039CB5E /* IncorrectData.json */; };
+		D2381FE729AE42900039CB5E /* LongData.json in Resources */ = {isa = PBXBuildFile; fileRef = D2381FE629AE42900039CB5E /* LongData.json */; };
+		D2381FEB29AE42E20039CB5E /* UnicodeData.json in Resources */ = {isa = PBXBuildFile; fileRef = D2381FEA29AE42E20039CB5E /* UnicodeData.json */; };
+		D2381FEF29AE432B0039CB5E /* AddLocationStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2381FEE29AE432B0039CB5E /* AddLocationStub.swift */; };
+		D2381FF329AE44060039CB5E /* StubbedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2381FF229AE44060039CB5E /* StubbedTests.swift */; };
 		D244D85929A13EBD00057498 /* AddLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D244D85829A13EBD00057498 /* AddLocationTests.swift */; };
 		D27375E729A368E1000B5DC6 /* BaseElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27375E629A368E1000B5DC6 /* BaseElement.swift */; };
 		D27375EB29A39224000B5DC6 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27375EA29A39224000B5DC6 /* Button.swift */; };
@@ -64,6 +70,12 @@
 		D20D722B2998287B00D92419 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		D2108D0F299D624800053324 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		D22C95E5299ACEBC0041E5D7 /* WeatherDataFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataFailure.swift; sourceTree = "<group>"; };
+		D2381FDC29AE414D0039CB5E /* CorrectData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CorrectData.json; sourceTree = "<group>"; };
+		D2381FE229AE42490039CB5E /* IncorrectData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IncorrectData.json; sourceTree = "<group>"; };
+		D2381FE629AE42900039CB5E /* LongData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LongData.json; sourceTree = "<group>"; };
+		D2381FEA29AE42E20039CB5E /* UnicodeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UnicodeData.json; sourceTree = "<group>"; };
+		D2381FEE29AE432B0039CB5E /* AddLocationStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationStub.swift; sourceTree = "<group>"; };
+		D2381FF229AE44060039CB5E /* StubbedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbedTests.swift; sourceTree = "<group>"; };
 		D244D85629A13EBD00057498 /* weather-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "weather-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244D85829A13EBD00057498 /* AddLocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationTests.swift; sourceTree = "<group>"; };
 		D244D85A29A13EBD00057498 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -166,9 +178,22 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		D2381FDB29AE41160039CB5E /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				D2381FDC29AE414D0039CB5E /* CorrectData.json */,
+				D2381FE229AE42490039CB5E /* IncorrectData.json */,
+				D2381FE629AE42900039CB5E /* LongData.json */,
+				D2381FEA29AE42E20039CB5E /* UnicodeData.json */,
+				D2381FEE29AE432B0039CB5E /* AddLocationStub.swift */,
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
 		D244D85729A13EBD00057498 /* weather-appUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D2381FDB29AE41160039CB5E /* Stub */,
 				D2BD14AE29A2DFDA00B56457 /* Utils */,
 				D2F9130E29A24B6F008C7C7C /* Screens */,
 				D2F9131529A24DA0008C7C7C /* Tests */,
@@ -272,6 +297,7 @@
 			children = (
 				D244D85829A13EBD00057498 /* AddLocationTests.swift */,
 				D2F9131629A24DCE008C7C7C /* BaseTest.swift */,
+				D2381FF229AE44060039CB5E /* StubbedTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -360,6 +386,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2381FDD29AE414D0039CB5E /* CorrectData.json in Resources */,
+				D2381FEB29AE42E20039CB5E /* UnicodeData.json in Resources */,
+				D2381FE329AE42490039CB5E /* IncorrectData.json in Resources */,
+				D2381FE729AE42900039CB5E /* LongData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,11 +494,13 @@
 				D27375EB29A39224000B5DC6 /* Button.swift in Sources */,
 				D2F9131F29A25344008C7C7C /* AddCityScreen.swift in Sources */,
 				D27375E729A368E1000B5DC6 /* BaseElement.swift in Sources */,
+				D2381FEF29AE432B0039CB5E /* AddLocationStub.swift in Sources */,
 				D27375EF29A39263000B5DC6 /* TextField.swift in Sources */,
 				D27375FF29A3C517000B5DC6 /* Title.swift in Sources */,
 				D27375FB29A393FE000B5DC6 /* Label.swift in Sources */,
 				D273760329A3C9C5000B5DC6 /* Image.swift in Sources */,
 				D2F9131029A24BDE008C7C7C /* BaseScreen.swift in Sources */,
+				D2381FF329AE44060039CB5E /* StubbedTests.swift in Sources */,
 				D2F9132329A25367008C7C7C /* WeatherViewScreen.swift in Sources */,
 				D273760729A3CC9D000B5DC6 /* ReturnProtocol.swift in Sources */,
 				D2F9131729A24DCE008C7C7C /* BaseTest.swift in Sources */,

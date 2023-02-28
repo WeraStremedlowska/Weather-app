@@ -1,0 +1,41 @@
+{
+    "coord": {
+        "lon": 32.64,
+        "lat": 25.7
+    },
+    "weather": [{
+        "id": 1000,
+        "main": "Clear",
+        "description": "U+1F30A",
+        "icon": "01n"
+    }],
+    "base": "stations",
+    "main": {
+        "temp": 👍🇪🇬🔺🗿🐈
+        "feels_like": 31.15,
+        "temp_min": 33,
+        "temp_max": 33,
+        "pressure": 1003,
+        "humidity": 24
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 2.6,
+        "deg": 260
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1598639519,
+    "sys": {
+        "type": 1,
+        "id": 2516,
+        "country": "U+1F420",
+        "sunrise": 1598585306,
+        "sunset": 1598631193
+    },
+    "timezone": 7200,
+    "id": 360502,
+    "name": "U+1F42C",
+    "cod": 200
+}

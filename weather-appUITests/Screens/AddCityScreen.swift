@@ -16,8 +16,9 @@ class AddCityScreen: BaseScreen, ReturnProtocol {
     private lazy var statusLabel: Label = .init(element: app.staticTexts["statusLabel"])
     
     @discardableResult
-    func tapSearchButton() -> AddCityScreen {
-        XCTContext.runActivity(named: "Search Button") { _ in
+    func tapSearchButton(stub: AddLocationStub? = nil) -> AddCityScreen {
+        XCTContext.runActivity(named: "Find Stubbed? result when tapping hittable Search Button") { _ in
+            stub?.start()
             searchButton.assert(state: .hittable)?.tap()
             return .init()
         }
@@ -91,19 +92,19 @@ extension AddCityScreen {
         }
     }
     
-//    @discardableResult
-//    func verifyMultiRowsError(expectedError1: String, expectedError2: String) -> Self {
-//        XCTContext.runActivity(named: "Verify multiple rows Error message") { _ in
-//            let error = statusLabel.text.description
-//            print(error)
-//
-//            print(statusLabel.contains(text: expectedError1))
-//            print(statusLabel.contains(text: expectedError1))
-//
-//            XCTAssert(statusLabel.contains(text: expectedError1) && statusLabel.contains(text: expectedError2))
-//            return self
-//        }
-//    }
+    @discardableResult
+    func verifyMultiRowsError(expectedError1: String, expectedError2: String) -> Self {
+        XCTContext.runActivity(named: "Verify multiple rows Error message") { _ in
+            let error = statusLabel.text.description
+            print(error)
+
+            print(statusLabel.contains(text: expectedError1))
+            print(statusLabel.contains(text: expectedError1))
+
+            XCTAssert(statusLabel.contains(text: expectedError1) && statusLabel.contains(text: expectedError2))
+            return self
+        }
+    }
 }
 
 //MARK: - Elements Assertions

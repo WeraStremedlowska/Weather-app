@@ -1,0 +1,17 @@
+{
+    "weather": [{
+        "id": 800,
+        "main": "Clear",
+        "icon": "01n"
+    }],
+    "base": "stations",
+    "main": {
+        "temp": 30
+    },
+    "sys": {
+        "type": 1,
+        "id": 2516,
+    },
+    "id": 360502,
+    "cod": 200
+}

@@ -226,6 +226,52 @@ extension WeatherViewScreen {
     }
 }
 
+// MARK: - Stabbing
+
+extension WeatherViewScreen {
+
+    @discardableResult
+    public func verifyDataResponse(expectedLocation: String,
+                                   expectedCondition: String,
+                                   expectedTemp: String) -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Verify if Stubbed Response as expected") { _ in
+            assertNavigationBarTitle()
+            assertConditionLabel()
+            assertTemperatureLabel()
+
+            navigationBarTitle.assert(for: .identifier, value: expectedLocation)
+            conditionLabel.assert(for: .label, value: expectedCondition)
+            temperatureLabel.assert(for: .label, value: expectedTemp)
+            return .init()
+        }
+    }
+
+    @discardableResult
+    public func verifyMultipleRowsDataResponse(expectedLocation: String,
+                                               expCondition1: String,
+                                               expCondition2: String,
+                                               expectedTemp: String) -> WeatherViewScreen {
+        XCTContext.runActivity(named: "Verify if Stubbed Response as expected") { _ in
+            assertNavigationBarTitle()
+            assertConditionLabel()
+            assertTemperatureLabel()
+
+            navigationBarTitle.assert(for: .identifier, value: expectedLocation)
+            verifyMultipleRowsText(textRow1: expCondition1, textRow2: expCondition2)
+            temperatureLabel.assert(for: .label, value: expectedTemp)
+            return .init()
+        }
+    }
+
+    @discardableResult
+    func verifyMultipleRowsText(textRow1: String, textRow2: String) -> Self {
+        XCTContext.runActivity(named: "Verify multiple rows text in Weather Condition") { _ in
+            XCTAssert(conditionLabel.contains(text: textRow1) && conditionLabel.contains(text: textRow2))
+            return self
+        }
+    }
+}
+
 // MARK: - Enums
 
 enum LocationPermissionAlertChoises: String {
